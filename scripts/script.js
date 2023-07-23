@@ -64,10 +64,10 @@ function weekDisplay(array) {
                 });
                 $(this).hover(
                     function() {
-                        $(this).css('background-color', 'var(--clr-gray200)');
+                        $(this).css('background-color', '#CFD8DC');
                     }, 
                     function() {
-                        $(this).css('background-color', 'var(--clr-gray100)');
+                        $(this).css('background-color', '#F0F7F8');
                     }
                 );
             }

@@ -1,0 +1,62 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+footer {
+    @include rounded-border-customizable($size: 2px, $border-radius: 0);
+    @include flexwrap;
+    justify-content: space-between;
+}
+
+.footer-left {
+	@include flexwrap;
+	font-size: 18px;
+    font-weight: bold;
+}
+
+.zero {
+    align-items: center;
+	@include flexwrap;
+	flex-direction: column;
+	background-color: rgba(223, 216, 216, 0.74);
+    h2 {
+        background-color: inherit;
+    }
+    li {
+        list-style-type: none;
+    }
+    a {
+        padding: 1rem;
+        font-weight: bold;
+        color: $clr-primary;
+        &::after {
+            content: '\f061';
+            @include Awesome5;
+            font-weight: 900;
+            position: relative;
+            left: 0.5rem;
+        }
+    }
+}
+
+.svg-group {
+	@include flexwrap;
+	flex-direction: row;
+	align-items: center;
+	background-color: rgba(223, 216, 216, 0.74);
+    svg:not(:first-child) {
+        margin-right: 2px;
+        margin-left: 1px;
+    }
+    .icon1 {
+        @include iconfill($fill: rgb(0, 92, 212));
+    }
+    .icon2 {
+        @include iconfill($fill: rgb(13, 117, 253));
+    }
+    .icon3 {
+        @include iconfill($fill: rgb(129, 5, 231), $stroke: rgb(255, 128, 8));
+    }
+    .icon4 {
+        @include iconfill($fill: rgb(182, 16, 5));
+    }
+}

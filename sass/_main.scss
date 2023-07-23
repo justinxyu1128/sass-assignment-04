@@ -1,0 +1,636 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+%border-base {
+    border: solid 1px $clr-black;
+}
+
+.hover-picture a > *:not(h2) {
+    opacity: 1.0;
+}
+
+.hover-picture a:hover > *:not(h2) {
+    opacity: 0.05;
+}
+
+a[href^="./news"] h2::before {
+    content: url(../icons/iconmonstr-newspaper-13.svg);
+}
+
+a[href^="./weather"] h2::before {
+    content: url(../icons/iconmonstr-weather-18.svg);
+}
+
+a[href^="./sports"] h2::before {
+    content: url(../icons/iconmonstr-basketball-2.svg);
+}
+
+a[href^="./events"] h2::before {
+    content: url(../icons/iconmonstr-party-4.svg);
+}
+
+a[href^="./financial"] h2::before {
+    content: url(../icons/iconmonstr-banknote-15.svg);
+}
+
+a[href="#"]{
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+// Grid styles
+
+.main-grid {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    grid-gap: 1.5rem;
+    justify-content: center;
+    .grid-2x1 {
+        grid-column-end: span 2;
+    }
+    .grid-1x2 {
+        grid-row-end: span 2;
+    }
+    a {
+        padding: 1rem;
+        font-weight: bold;
+        color: $clr-black;
+    }
+    &>* {
+        margin: 0 5px 5px 5px;
+    }
+}
+
+// moving arrow links
+
+.card-link {
+    &::after {
+        content: '\f061';
+        @include Awesome5;
+        font-weight: 900;
+        position: relative;
+        left: 0.5rem;
+    }
+}
+
+.card-description + .card-link {
+    background-color: $background-color;
+}
+
+.grid-cell {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: .4rem;
+    border-radius: $radius;
+    width: 100%;
+    &>a {
+        padding: 1rem;
+    }
+    h3 {
+        padding: 5px 0 5px 1rem;
+    }
+    p {
+        padding: 1rem;
+        margin: 0;
+        background-color: $clr-gray100;
+    }
+    ul {
+        padding-bottom: 1rem;
+        li {
+            padding: 10px 0;
+        }
+    }
+    :first-child {
+        border-radius: $radius $radius 0 0;
+        padding: 10px 0;
+    }
+    a:hover :first-child {
+        border-radius: $radius;
+    }
+    :last-child {
+        border-radius: 0 0 $radius $radius;
+    }
+}
+
+.grid-item {
+	overflow: hidden;
+    @include rounded-border-customizable($color: $clr-gray200, $border-radius: 0);
+    background-color: $background-color;
+	box-shadow: 4px 4px $clr-gray400;
+    margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	cursor: pointer;
+	transition: border 200ms ease-in, box-shadow 200ms ease-in;
+	&:hover {
+        @include rounded-border-customizable($color: $clr-primary, $border-radius: 0);
+		box-shadow: 8px 8px $clr-primary-hover;
+	}
+    form {
+        padding: 1.5rem;
+    }
+    &:last-of-type {
+        grid-column: 4/5;
+        grid-row: 4/5;
+    }
+}
+
+img ~ * {
+    background-color: $background-color;
+}
+
+.card-link {
+    &:hover {
+        text-decoration: underline;
+        &::after {
+            animation: arrow 1s ease-in-out infinite alternate;
+        }
+    }
+    .grid-item & {
+        color: $clr-primary;
+    }
+}
+
+@keyframes arrow {
+	0% {
+		left: 0.5rem;
+	}
+	100% {
+		left: 1.5rem;
+	}
+}
+
+.card {
+    padding-right: 1rem;
+    grid-column: 5/6;
+    grid-row: 4/5;
+    font-size: clamp(0.6rem, 0.4400rem + 0.8000vw, 1.4rem);
+    margin-top: 10px;
+    &-image {
+        height: 12rem;
+        width: 100%;
+        object-fit: cover;
+    }
+    &-title {
+        padding: 1rem;
+        text-align: center;
+    }
+    &-description {
+        padding: 0 1rem;
+    }
+    ul {
+        padding: 1rem;
+    }
+    a {
+        color: black;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.arts {
+	text-align: center;
+}
+
+#vancouver-housing-prices-soar {
+    background-image: url(../images/overhead-shot-of-vancouver-houses-600x300.jpeg);
+}
+
+#canada-day-celebrations {
+    background-image: url(../images/canada-day-celebrations-600x300.jpeg);
+}
+
+#football-gaffe {
+    background-image: url(../images/football-gaffe-300x600.jpeg);
+}
+
+#student-stress-rising {
+    background-image: url(../images/stressed-out-student-300x600.jpeg);
+}
+
+#obamas-back {
+    background-image: url(../images/obama-speaking-300x300.jpeg);
+}
+
+#vancouvers-rainy-weather {
+    background-image: url(../images/vancouver-rain-300x300.jpeg);
+}
+
+.weather-panel {
+    position: relative;
+    bottom: 0px;
+    grid-column: 1/2; 
+    grid-row: 1/2;
+    height: 50vh;
+    z-index: 50;
+    & + .trending {
+        padding: 10px 0 0 10px;
+        background-color: $background-color;
+        border-radius: $radius;
+        grid-row: 2/3;
+        grid-column: 1/2;
+        &> * {
+            background-color: inherit;
+        }
+        h3 {
+            font-size: 1rem;
+            margin: 0 0 10px 5px;
+        }
+    }
+}
+
+.weather-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    @include rounded-border-customizable;
+    padding-bottom: 15px;
+    background-color: beige;
+    z-index: 16;
+    position: relative;
+    &:before {
+        content: "";
+        border: solid 40px $clr-gray200;
+        position: absolute;
+        top: -80px;
+        left: -5px;
+        right: -5px;
+        z-index: 20;
+    }
+    div {
+        width: 80%;
+    }
+    p {
+        background-color: inherit;
+    }
+}
+
+.weekday {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.weather-image-wrapper {
+    padding: 1rem 4rem;
+    background-color: lightskyblue;
+    @include rounded-border-customizable;
+    display: flex;
+    justify-content: center;
+    &>img {
+        max-width: 50px;
+    }
+}
+
+.weather-info {
+    @include flexwrap;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.temperature {
+    display: flex;
+    p{
+        font-weight: bold;
+        font-size: 2rem;
+        display: inline;
+        margin:0 10px 0 0;
+    }
+    button {
+        width: 55px;
+        height: 50px;
+        margin-right: 10px;
+        padding: 0 20px 0 10px;
+        border-radius: $radius;
+    }
+}
+
+.degree {
+    &-active {
+        background-color: $clr-gray200;
+    }
+    /* script class degree-active */
+    &-inactive{
+        background-color: whitesmoke;
+    }
+    /* script class degree-inactive */
+}
+
+.weekday-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1;
+    transform: translateY(-362px);
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    &.expanded {
+        @include transformXY($X: 1);
+    }
+    /* for animation with script expanded class*/
+}
+
+.expand {
+    width: 100%;
+    @include rounded-border-customizable;
+    text-align: center;
+    background-color: whitesmoke;
+    order: 30;
+    &.expanded img {
+        transform: rotate(180deg);
+        transition: all 0.5s linear;
+    }
+    img {
+        transition: all 0.5s linear;
+    }
+    &:active {
+        background-color: lightgray;
+    }
+    /* script class expand:active */
+}
+
+.weather-tab {
+    display: flex;
+    @extend %border-base;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $clr-gray100;
+    p {
+        font-size: clamp(0.75rem, 0.7000rem + 0.2500vw, 1rem);
+        margin:0 0 0 20px;
+        background-color: inherit;
+    }
+    img {
+        margin-right: 30px;
+    }
+}
+
+.trending {
+    .trending-article {
+        display: grid;
+        grid-template-columns: 30px repeat(2, 1fr);
+        grid-template-rows: 1fr 0.5fr;
+        border-bottom: solid 1px black;
+        margin-top: 10px;
+        p, a {
+            margin: 0 20px 10px 5px;
+            background-color: inherit;
+            padding: 0;
+        }
+        .numbering {
+            grid-row: 1/3;
+            font-weight: bold;
+            font-size: clamp(1rem, 0.9000rem + 0.5000vw, 1.5rem);
+            margin: 5px 5px 10px 7px;
+        }
+        .views {
+            color: $clr-gray400;
+        }
+        .headline {
+            font-weight: bold;
+            grid-column: 2/4;
+            margin-top: 5px;
+            color: $clr-black;
+        }
+    }
+}
+
+.extra-content {
+    display: none;
+}
+
+@media (max-width: 1500px) {
+    main {
+        margin-top: 100px;
+    }
+    .main-grid {
+        grid-template-columns: repeat(5, 230px);
+        grid-template-rows: 500px 450px 420px 360px;
+        gap: 20px 30px;
+        .grid-2x1 {
+            grid-column-end: span 2;
+        }
+        .grid-1x2 {
+            grid-row-end: span 2;
+        }
+    }
+    .weather-panel {
+        grid-row: 1/2;
+    }
+    .grid-2x1 {
+        &:first-of-type {
+            grid-column: 2;
+        }
+        &:last-of-type {
+            grid-column: 2;
+            grid-row: 2;
+        }
+    }
+    .weekday-menu + .trending {
+        top: 400px;
+    }
+    .grid-item {
+        grid-column-end: span 1;
+        grid-row-end: span 1;
+        width: 230px;
+        h2 {
+            font-size: 0.9rem;
+        }
+        &:last-of-type {
+            display: block;
+        }
+    }
+    .extra-content {
+        display: grid;
+    }
+    .card {
+        padding-right: 0;
+    }
+    textarea {
+        width: 100%;
+        margin-top: 7px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .main-grid {
+        grid-template-columns: repeat(3, 220px);
+        grid-template-rows: 450px 450px 1fr;
+        gap: 20px 20px;
+        .grid-2x1 {
+            grid-column-end: span 2;
+            &:first-of-type {
+                grid-column: 2/3;
+            }
+        }
+        .grid-1x2 {
+            grid-row-end: span 1;
+        }
+    }
+    .extra-content {
+        display: none;
+    }
+    .grid-item {
+        width: 230px;
+        &:first-of-type {
+            grid-row: 2;
+        }
+        &:last-of-type {
+            grid-column: 3/4;
+            grid-row: 3;
+        }
+    }
+    .card {
+        grid-column: 4/5;
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 1000px) {
+    .main-grid {
+        grid-template-rows: 520px 400px 1fr;
+        gap: 20px;
+        .grid-2x1 {
+            grid-column-end: span 2;
+        }
+    }
+    .grid-cell h2,
+    .grid-cell h3 {
+        font-size: 1rem;
+    }
+    .card {
+        grid-column: 3/4;
+        grid-row: 4;
+    }
+    .grid-item {
+        width: 200px;
+        &:last-of-type {
+            grid-column: 2/3;
+            grid-row: 4;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 30% 210px 210px;
+        grid-template-rows: 450px 400px 330px 330px;
+        gap: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        .grid-2x1 {
+            grid-column: 2/4;
+        }
+    }
+    .card {
+        grid-column: 3/4;
+    }
+    .grid-item {
+        width: 200px;
+        font-size: 0.75rem;
+        h2 {
+            font-size: 0.75rem;
+        }
+        &:first-of-type {
+            grid-column: 1/2;
+        }
+        &:last-of-type {
+            grid-column: 2/3;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .main-grid {
+        grid-template-columns: clamp(130px, 43.3333px + 30vw, 210px) clamp(130px, 43.3333px + 30vw, 210px);
+        grid-template-rows: 400px 400px 360px 350px 350px;
+        .grid-2x1 {
+            grid-column: 1/3;
+        }
+    }
+    .grid-item {
+        width: 190px;
+        &:first-of-type {
+            grid-column: 1/2;
+            grid-row: 4/5;
+        }
+        &:last-of-type {
+            grid-column: 1/2;
+            grid-row: 7/8;
+        }
+    }
+    .card {
+        grid-column: 2/3;
+        grid-row: 7/8;
+    }
+    .weather-panel {
+        grid-column: 2/3;
+        grid-row: 3/4;
+        & + .trending {
+            grid-column: 1/2;
+            grid-row: 3/4;
+        }
+    }
+    .weather-card:before {
+        border: solid 40px var$clr-gray200;
+    }
+    #student-stress-rising {
+        position: relative;
+        z-index: 50;
+    }
+    .temperature {
+        p {
+            font-size: 1.5rem;
+        }
+        button {
+            width: 30px;
+            padding: 0 30px 0 10px;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .main-grid {
+        margin: auto 10px auto 10px;
+    }
+    .weather-panel {
+        grid-column: 1/3;
+        grid-row: 3/4;
+        & + .trending {
+            grid-column: 1/3;
+            grid-row: 4/5;
+            font-size: 0.7rem;
+        }
+    }
+    .grid-item {
+        grid-column-end: span 2;
+        width: 250px;
+        justify-self: center;
+        &:first-of-type {
+            grid-column: 1/3;
+            grid-row: 7/8;
+        }
+        &:last-of-type {
+            grid-column: 1/3;
+            grid-row: 9/10;
+            justify-self: center;
+        }
+    }
+    .card {
+        grid-column: 1/3;
+        grid-row: 10/11;
+        justify-self: center;
+    }
+}

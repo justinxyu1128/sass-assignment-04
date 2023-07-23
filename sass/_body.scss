@@ -1,0 +1,48 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $clr-gray200;
+    @include DMSans;
+    color: $clr-black;
+    font-size: clamp(0.4rem, 0.4000rem + 0.5000vw, 1rem);
+}
+
+h1, h2, h3 {
+    @include DMSerif;
+}
+
+h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    &::before {
+        margin-right: .4rem;
+        position: relative;
+        top: .2rem;
+    }
+    @extend ul;
+}
+
+h3 {
+    font-size: 1rem;
+    padding-top: .6rem;
+    @extend ul;
+}
+
+ul {
+    margin: 0;
+    background-color: $clr-gray100;
+    list-style-type: none;
+}
+
+p {
+    padding-top: .4rem;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

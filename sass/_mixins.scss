@@ -1,0 +1,65 @@
+@use "variables" as *;
+
+@mixin rounded-border-customizable(
+  $size: 1px,
+  $color: $clr-black,
+  $border-radius: $radius
+) {
+  border: $size solid $color;
+  border-radius: $radius;
+}
+
+@mixin flexwrap(
+    $flex: flex,
+    $wrap: wrap
+) {
+    display: $flex;
+    flex-wrap: $wrap;
+}
+
+@mixin DMSans(
+    $font-family: $font-family-DM-Sans
+) {
+    font-family: $font-family;
+}
+
+@mixin DMSerif(
+    $font-family: $font-family-DM-Serif
+) {
+    font-family: $font-family;
+}
+
+@mixin Awesome5(
+    $font-family: $font-family-Font-Awesome-5
+) {
+    font-family: $font-family;
+}
+
+@mixin transformXY(
+    $X: 200%,
+    $Y: 0
+) {
+    transform: scaleX($X) translateY($Y);
+}
+
+@mixin hamburger(
+    $translate: 0,
+    $originX: 100%
+) {
+    transform: rotate(-10deg) translate($translate);
+    transform-origin: $originX 50%;
+}
+
+@mixin iconfill(
+    $fill: 0,
+    $stroke: rgb(214, 214, 255)
+) {
+    fill: $fill;
+    stroke: $stroke;
+}
+
+@mixin header-left-media-responsive(
+    $margin: 0 20% 0 0
+) {
+    margin: $margin;
+}

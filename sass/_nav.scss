@@ -1,0 +1,172 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+header {
+    background-color: $clr-gray400;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* To allow positioning of children */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header-left {
+    padding: 5px 0 10px 0;
+    margin: 0 35% 0 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    & img {
+    width: 48px;
+    height: 48px;
+    }
+}
+
+.banner-block {
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+    &>* {
+        color: $clr-black;
+        @include DMSerif;
+        font-size: 2.5rem;
+        text-shadow: 2.5px 3px black, 2.5px 2.5px black, 2.5px 2px black, 2.5px 1.5px black, 2.5px 1px black, 2.5px 0.5px black;
+    }
+    .banner-text {
+        color: $clr-gray100;
+        @include transformXY($X: 170%);
+    }
+}
+
+.banner-border-1 {@include transformXY($Y: .07rem);}
+.banner-border-2 {@include transformXY($Y: .15rem);}
+.banner-border-3 {@include transformXY($Y: .23rem);}
+.banner-border-4 {@include transformXY($Y: .3rem);}
+
+.hamburger-button {
+    display: none; /* Reshows on > mobile sized widths */
+    width: 60px;
+    height: 60px;
+    border-radius: $radius;
+    .bar {
+        width: 35px;
+        height: 4px;
+        background-color: $clr-primary;
+        display: block;
+        margin: 8px auto;
+        transition: all 0.4s ease-in-out;
+        &:nth-child(1).is-active {
+            @include hamburger;
+        }
+        &:nth-child(2).is-active {
+            @include hamburger($translate: -4px, $originX: 120%);
+        }
+        &:nth-child(3).is-active {
+            @include hamburger($translate: -8px, $originX: 140%);
+        }
+    }
+}
+
+nav.is-active {
+    top: 70px;
+    right: 0;
+}
+
+.hamburger-nav {
+    display: block;
+    background-color: $clr-gray200;
+    @include rounded-border-customizable($size: 2px, $color: $clr-gray400, $border-radius: 0);
+    ul {
+        margin: 0;
+        display: flex;
+        padding: 1rem;
+        justify-content: space-between;
+        gap: 50px;
+        background-color: $clr-gray400;
+        li {
+            font-size: 2rem;
+            background-color: $clr-gray200;
+            border-color: $clr-primary-dark;
+            color: $clr-gray100;
+            padding: 0 2rem 0 2rem;
+            border-radius: $radius;
+            @include DMSerif;
+            &:hover {
+                background-color: $clr-primary-hover;
+                color: $clr-gray400;
+            }
+        }
+    }
+    a {
+        display: block;
+        padding: .5rem;
+        text-align: center;
+        color: $clr-primary;
+        &:visited {
+            color: $clr-primary;
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .hamburger-nav {
+        position: absolute;
+        width: 12rem;
+        right: -1000px;
+        top: 70px;
+        transition: all 0.4s ease-in-out;
+        ul {
+            flex-direction: column;
+            gap: 0;
+            li {
+                padding: 0;
+                border-radius: 0;
+            }
+        }
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .hamburger-button {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 5px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header-left {
+        @include header-left-media-responsive;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-left {
+        @include header-left-media-responsive;
+    }
+}
+
+@media (max-width: 500px) {
+    .banner-block .banner-text {
+        transform: scaleX(90%);
+        @include transformXY($X: 90%);
+    }
+    .header-left {
+        @include header-left-media-responsive;
+    }
+}
+
+@media (max-width: 420px) {
+    .hamburger-button {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+    }
+}
