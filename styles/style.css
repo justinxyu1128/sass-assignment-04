@@ -1,0 +1,1023 @@
+/* font-family: 'DM Sans', sans-serif;
+font-family: 'DM Serif Display', serif; */
+* {
+    box-sizing: border-box;
+}
+/* General Styling */
+:root {
+    --background-color: white;
+    --primary-button: green;
+    --secondary-button: rgb(0, 108, 0);
+    --accent: magenta;
+    --clr-primary: #304FFE;
+    --clr-primary-hover: #29E6A7;
+    --clr-primary-dark: #039D69;
+    --clr-gray100: #F0F7F8;
+    --clr-gray200: #CFD8DC;
+    --clr-gray400: #6B7E86;
+    --clr-red100: rgb(255, 17, 0);
+    --clr-black: black;
+    --radius: 0.2rem;
+}
+
+body {
+    background-color: var(--clr-gray200);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--clr-black);
+    font-size: clamp(0.4rem, 0.4000rem + 0.5000vw, 1rem);
+}
+
+header {
+    background-color: var(--clr-gray400);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* To allow positioning of children */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header-left {
+    padding: 5px 0 10px 0;
+    margin: 0 35% 0 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header-left img {
+    width: 48px;
+    height: 48px;
+}
+
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 2px solid black;
+}
+
+.footer-left {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 18px;
+    font-weight: bold;
+}
+
+h1, h2, h3 {
+    font-family: 'DM Serif Display', serif;
+}
+
+a[href="#"]{
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+h2::before {
+    margin-right: .4rem;
+    position: relative;
+    top: .2rem;
+}
+
+h3 {
+    font-size: 1rem;
+    padding-top: .6rem;
+}
+
+h2,
+h3,
+ul {
+    margin: 0;
+    background-color: var(--clr-gray100);
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+p {
+    padding-top: .4rem;
+}
+
+.hover-picture a > *:not(h2) {
+    opacity: 1.0;
+}
+
+.hover-picture a:hover > *:not(h2) {
+    opacity: 0.05;
+}
+
+a[href^="./news"] h2::before {
+    content: url(../icons/iconmonstr-newspaper-13.svg);
+}
+
+a[href^="./weather"] h2::before {
+    content: url(../icons/iconmonstr-weather-18.svg);
+}
+
+a[href^="./sports"] h2::before {
+    content: url(../icons/iconmonstr-basketball-2.svg);
+}
+
+a[href^="./events"] h2::before {
+    content: url(../icons/iconmonstr-party-4.svg);
+}
+
+a[href^="./financial"] h2::before {
+    content: url(../icons/iconmonstr-banknote-15.svg);
+}
+
+
+
+/**********************************************************
+ * Core grid styles
+ *
+**/
+
+.main-grid {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    grid-gap: 1.5rem;
+    justify-content: center;
+}
+
+.main-grid .grid-2x1 {
+    grid-column-end: span 2;
+}
+
+.main-grid .grid-1x2 {
+    grid-row-end: span 2;
+}
+
+.main-grid a {
+    padding: 1rem;
+    font-weight: bold;
+    color: var(--clr-black);
+}
+
+.main-grid>* {
+    margin: 0 5px 5px 5px;
+}
+
+.card-link {
+    &::after {
+        content: '\f061';
+        font-family: 'Font Awesome 5 free';
+        font-weight: 900;
+        position: relative;
+        left: 0.5rem;
+    }
+}
+/* Card link is the moving arrow animations */
+.card-description + .card-link {
+    background-color: var(--background-color);
+}
+
+.grid-cell {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: .4rem;
+    border-radius: var(--radius);
+    width: 100%;
+}
+
+.grid-cell > a {
+    padding: 1rem;
+}
+
+.grid-cell h3 {
+    padding: 5px 0 5px 1rem;
+}
+
+.grid-cell p {
+    padding: 1rem;
+    margin: 0;
+    background-color: var(--clr-gray100);
+}
+
+.grid-cell ul {
+    padding-bottom: 1rem;
+}
+
+.grid-cell li {
+    padding: 10px 0;
+}
+
+.grid-cell :first-child {
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 10px 0;
+}
+
+.grid-cell a:hover :first-child {
+    border-radius: var(--radius);
+}
+
+.grid-cell :last-child {
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+/**********************************************************
+ * Banner, Hamburger button, Nav popup menu
+ *
+**/
+
+.banner-block {
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-block > * {
+    color: var(--clr-black);
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    text-shadow: 2.5px 3px black, 2.5px 2.5px black, 2.5px 2px black, 2.5px 1.5px black, 2.5px 1px black, 2.5px 0.5px black;
+}
+
+.banner-block .banner-text {
+    color: var(--clr-gray100);
+    transform: scaleX(170%);
+}
+
+.banner-border-1 {transform: scaleX(200%) translateY(.07rem);}
+.banner-border-2 {transform: scaleX(200%) translateY(.15rem);}
+.banner-border-3 {transform: scaleX(200%) translateY(.23rem);}
+.banner-border-4 {transform: scaleX(200%) translateY(.3rem);}
+
+.hamburger-button {
+    display: none; /* Reshows on > mobile sized widths */
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius);
+}
+
+.hamburger-button .bar {
+    width: 35px;
+    height: 4px;
+    background-color: var(--clr-primary);
+    display: block;
+    margin: 8px auto;
+    transition: all 0.4s ease-in-out;
+}
+
+.hamburger-button .bar:nth-child(1).is-active {
+    transform: rotate(-10deg);
+    transform-origin: 100% 50%;
+}
+
+.hamburger-button .bar:nth-child(2).is-active {
+    transform: rotate(-10deg) translate(-4px);
+    transform-origin: 120% 50%;
+}
+
+.hamburger-button .bar:nth-child(3).is-active {
+    transform: rotate(-10deg) translate(-8px);
+    transform-origin: 140% 50%;
+}
+
+nav.is-active {
+    top: 70px;
+    right: 0;
+}
+
+.hamburger-nav {
+    display: block;
+    background-color: var(--clr-gray200);
+    border: 2px solid var(--clr-gray400);
+}
+
+.hamburger-nav ul {
+	padding: 0;
+	margin: 0;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    gap: 50px;
+    background-color: var(--clr-gray400);
+}
+
+.hamburger-nav li {
+    font-size: 2rem;
+    background-color: var(--clr-gray200);
+    border-color: var(--clr-primary-dark);
+    color: var(--clr-gray100);
+    padding: 0 2rem 0 2rem;
+    border-radius: var(--radius);
+    font-family: 'DM Serif Display', serif;
+}
+
+.hamburger-nav li:hover {
+    background-color: var(--clr-primary-hover);
+    color: var(--clr-gray400);
+}
+
+.hamburger-nav a {
+    display: block;
+    padding: .5rem;
+    text-align: center;
+    color: var(--clr-primary);
+}
+
+.hamburger-nav a:visited {
+    color: var(--clr-primary);
+}
+
+
+/**********************************************************
+ * Grid cell styles
+ *
+**/
+
+.grid-item {
+	overflow: hidden;
+	border: 1px solid var(--clr-gray200);
+    background-color: var(--background-color);
+	box-shadow: 4px 4px var(--clr-gray400);
+    margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	cursor: pointer;
+	transition: border 200ms ease-in, box-shadow 200ms ease-in;
+	&:hover {
+		border: 1px solid var(--clr-primary);
+		box-shadow: 8px 8px var(--clr-primary-hover);
+	}
+}
+
+.grid-item form {
+    padding: 1.5rem;
+}
+
+img ~ * {
+    background-color: var(--background-color);
+}
+
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+.card-link {
+    &:hover::after {
+		animation: arrow 1s ease-in-out infinite alternate;
+	}
+}
+
+.grid-item .card-link {
+    color: var(--clr-primary);
+}
+
+@keyframes arrow {
+	0% {
+		left: 0.5rem;
+	}
+	100% {
+		left: 1.5rem;
+	}
+}
+
+.card-image {
+	height: 12rem;
+	width: 100%;
+	object-fit: cover;
+}
+
+.card-title {
+	padding: 1rem;
+	text-align: center;
+}
+
+.card-description {
+	padding: 0 1rem;
+}
+
+.card {
+    padding-right: 1rem;
+    grid-column: 5/6;
+    grid-row: 4/5;
+    font-size: clamp(0.6rem, 0.4400rem + 0.8000vw, 1.4rem);
+    margin-top: 10px;
+}
+
+.card ul {
+    padding: 1rem;
+}
+
+.card a {
+	color: black;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	padding: 0.5rem 1rem;
+}
+
+.arts {
+	text-align: center;
+}
+
+#vancouver-housing-prices-soar {
+    background-image: url(../images/overhead-shot-of-vancouver-houses-600x300.jpeg);
+}
+
+#canada-day-celebrations {
+    background-image: url(../images/canada-day-celebrations-600x300.jpeg);
+}
+
+#football-gaffe {
+    background-image: url(../images/football-gaffe-300x600.jpeg);
+}
+
+#student-stress-rising {
+    background-image: url(../images/stressed-out-student-300x600.jpeg);
+}
+
+#obamas-back {
+    background-image: url(../images/obama-speaking-300x300.jpeg);
+}
+
+#vancouvers-rainy-weather {
+    background-image: url(../images/vancouver-rain-300x300.jpeg);
+}
+
+
+
+/**********************************************************
+ * Bottom of page above footer
+ *
+**/
+
+.zero h2 {
+    background-color: inherit;
+}
+
+.zero li {
+    list-style-type: none;
+}
+
+.zero a {
+	padding: 1rem;
+	font-weight: bold;
+	color: var(--clr-primary);
+
+	&::after {
+		content: '\f061';
+		font-family: 'Font Awesome 5 free';
+		font-weight: 900;
+		position: relative;
+		left: 0.5rem;
+	}
+}
+
+.svg-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: rgba(223, 216, 216, 0.74);
+}
+
+.svg-group svg:not(:first-child) {
+	margin-right: 2px;
+	margin-left: 1px;
+}
+
+.svg-group .icon1 {
+	fill: rgb(0, 92, 212);
+	stroke: rgb(214, 214, 255);
+}
+
+.svg-group .icon2 {
+	fill: rgb(13, 117, 253);
+	stroke: rgb(214, 214, 255);
+}
+
+.svg-group .icon3 {
+	fill: rgb(129, 5, 231);
+	stroke: rgb(255, 128, 8);
+}
+
+.svg-group .icon4 {
+	fill: rgb(182, 16, 5);
+	stroke: rgb(214, 214, 255);
+}
+
+
+
+/**********************************************************
+ * Weather panel
+ *
+**/
+.weather-panel {
+    position: relative;
+    bottom: 0px;
+    grid-column: 1/2; 
+    grid-row: 1/2;
+    height: 50vh;
+    z-index: 50;
+}
+.weather-card:before {
+    content: "";
+    border: solid 40px var(--clr-gray200);
+    position: absolute;
+    top: -80px;
+    left: -5px;
+    right: -5px;
+    z-index: 20;
+}
+
+.weather-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: solid 1px black;
+    padding-bottom: 15px;
+    background-color: beige;
+    z-index: 16;
+    position: relative;
+    border-radius: var(--radius);
+}
+
+.weather-card div {
+    width: 80%;
+}
+
+.weather-card p {
+    background-color: inherit;
+}
+
+.weekday {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.weather-image-wrapper {
+    padding: 1rem 4rem;
+    border: solid 1px black;
+    background-color: lightskyblue;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+}
+
+.weather-image-wrapper>img {
+    max-width: 50px;
+}
+
+.weather-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.temperature {
+    display: flex;
+}
+
+.temperature p{
+    font-weight: bold;
+    font-size: 2rem;
+    display: inline;
+    margin:0 10px 0 0;
+}
+
+.temperature button {
+    width: 55px;
+    height: 50px;
+    margin-right: 10px;
+    padding: 0 20px 0 10px;
+    border-radius: var(--radius);
+}
+
+.degree-active {
+    background-color: var(--clr-gray200);
+}
+
+/* script class degree-active */
+
+.degree-inactive{
+    background-color: whitesmoke;
+}
+
+/* script class degree-inactive */
+
+.weekday-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1;
+    transform: translateY(-362px);
+    position: relative;
+    transition: all 0.5s ease-in-out;
+}
+
+.weekday-menu.expanded {
+    transform: translateY(0px);
+}
+/* for animation with script expanded class*/
+
+.expand.expanded img {
+    transform: rotate(180deg);
+    transition: all 0.5s linear;
+}
+
+.expand img {
+    transition: all 0.5s linear;
+}
+
+.weather-tab {
+    display: flex;
+    border: solid 1px black;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--clr-gray100);
+}
+
+.weather-tab p {
+    font-size: clamp(0.75rem, 0.7000rem + 0.2500vw, 1rem);
+    margin:0 0 0 20px;
+    background-color: inherit;
+}
+
+.weather-tab img {
+    margin-right: 30px;
+}
+
+.expand {
+    width: 100%;
+    border: solid 1px black;
+    text-align: center;
+    background-color: whitesmoke;
+    order: 30;
+    border-radius: var(--radius);
+}
+
+.expand:active {
+    background-color: lightgray;
+}
+/* script class expand:active */
+.capitalize {
+    text-transform: capitalize;
+}
+
+.weather-panel + .trending {
+    padding: 10px 0 0 10px;
+    background-color: var(--background-color);
+    border-radius: var(--radius);
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+.trending > * {
+    background-color: inherit;
+}
+
+.trending h3 {
+    font-size: 1rem;
+    margin: 0 0 10px 5px;
+}
+
+.trending-article {
+    display: grid;
+    grid-template-columns: 30px repeat(2, 1fr);
+    grid-template-rows: 1fr 0.5fr;
+    border-bottom: solid 1px black;
+    margin-top: 10px;
+}
+
+.trending-article p,
+.trending-article a {
+    margin: 0 20px 10px 5px;
+    background-color: inherit;
+    padding: 0;
+}
+
+.trending .numbering {
+    grid-row: 1/3;
+    font-weight: bold;
+    font-size: clamp(1rem, 0.9000rem + 0.5000vw, 1.5rem);
+    margin: 5px 5px 10px 7px;
+}
+
+.trending .headline {
+    font-weight: bold;
+    grid-column: 2/4;
+    margin-top: 5px;
+    color: var(--text-color);
+}
+
+
+.trending .views {
+    color: var(--clr-gray400);
+}
+
+.grid-item:last-of-type {
+    grid-column: 4/5;
+    grid-row: 4/5;
+}
+.extra-content {
+    display: none;
+}
+/**********************************************************
+ * Above Footer
+ *
+**/
+
+.zero {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	background-color: rgba(223, 216, 216, 0.74);
+}
+
+a:visited {
+    color: inherit;
+}
+
+/**********************************************************
+ Media Queries
+/********************************
+*/
+
+@media (max-width: 1500px) {
+    main {
+        margin-top: 100px;
+    }
+    .main-grid {
+        grid-template-columns: repeat(5, 230px);
+        grid-template-rows: 500px 450px 420px 360px;
+        gap: 20px 30px;
+    }
+    .hamburger-nav {
+        position: absolute;
+        width: 12rem;
+        right: -1000px;
+        top: 70px;
+        transition: all 0.4s ease-in-out;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .hamburger-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    .hamburger-nav li {
+        padding: 0;
+        border-radius: 0;
+    }
+    .hamburger-button {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 5px;
+    }
+    .weather-panel {
+        grid-row: 1/2;
+    }
+    .grid-2x1:first-of-type {
+        grid-column: 2;
+    }
+    .grid-2x1:last-of-type {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    .weekday-menu + .trending {
+        top: 400px;
+    }
+    .main-grid .grid-2x1 {
+        grid-column-end: span 2;
+    }
+    .main-grid .grid-1x2 {
+        grid-row-end: span 2;
+    }
+    .grid-item {
+        grid-column-end: span 1;
+        grid-row-end: span 1;
+        width: 230px;
+    }
+    .grid-item h2 {
+        font-size: 0.9rem;
+    }
+    .extra-content {
+        display: grid;
+    }
+    .grid-item:last-of-type {
+        display: block;
+    }
+    .card {
+        padding-right: 0;
+    }
+    textarea {
+        width: 100%;
+        margin-top: 7px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .main-grid {
+        grid-template-columns: repeat(3, 220px);
+        grid-template-rows: 450px 450px 1fr;
+        gap: 20px 20px;
+    }
+    .grid-2x1:first-of-type {
+        grid-column: 2/3;
+    }
+    .extra-content {
+        display: none;
+    }
+    .main-grid .grid-2x1 {
+        grid-column-end: span 2;
+    }
+    .main-grid .grid-1x2 {
+        grid-row-end: span 1;
+    }
+    .grid-item {
+        width: 230px;
+    }
+    .grid-item:first-of-type {
+        grid-row: 2;
+    }
+    .grid-item:last-of-type {
+        grid-column: 3/4;
+        grid-row: 3;
+    }
+    .card {
+        grid-column: 4/5;
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 1000px) {
+	.main-grid {
+        grid-template-rows: 520px 400px 1fr;
+        gap: 20px;
+    }
+    .main-grid .grid-2x1 {
+        grid-column-end: span 2;
+    }
+    .grid-cell h2,
+    .grid-cell h3 {
+        font-size: 1rem;
+    }
+    .grid-item:last-of-type {
+        grid-column: 2/3;
+        grid-row: 4;
+    }
+    .card {
+        grid-column: 3/4;
+        grid-row: 4;
+    }
+    .header-left {
+        margin:0 20% 0 0;
+    }
+    .grid-item {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 30% 210px 210px;
+        grid-template-rows: 450px 400px 330px 330px;
+        gap: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .grid-item:last-of-type {
+        grid-column: 2/3;
+    }
+    .card {
+        grid-column: 3/4;
+    }
+    .grid-item:first-of-type {
+        grid-column: 1/2;
+    }
+    .main-grid .grid-2x1 {
+        grid-column: 2/4;
+    }
+    .grid-item {
+        width: 200px;
+        font-size: 0.75rem;
+    }
+    .grid-item h2 {
+        font-size: 0.75rem;
+    }
+    
+    .header-left {
+        margin:0 20% 0 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-grid {
+        grid-template-columns: clamp(130px, 43.3333px + 30vw, 210px) clamp(130px, 43.3333px + 30vw, 210px);
+        grid-template-rows: 400px 400px 360px 350px 350px;
+    }
+    .grid-item:last-of-type {
+        grid-column: 1/2;
+        grid-row: 7/8;
+    }
+    .grid-item {
+        width: 190px;
+    }
+    .card {
+        grid-column: 2/3;
+        grid-row: 7/8;
+    }
+    .grid-item:first-of-type {
+        grid-column: 1/2;
+        grid-row: 4/5;
+    }
+    .main-grid .grid-2x1 {
+        grid-column: 1/3;
+    }
+    .banner-block .banner-text {
+        transform: scaleX(90%);
+    }
+    .header-left {
+        margin:0 20% 0 0;
+    }
+    .weather-panel {
+        grid-column: 2/3;
+        grid-row: 3/4;
+    }
+    .weather-panel + .trending {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+    .weather-card:before {
+        border: solid 40px var(--clr-gray200);
+    }
+    #student-stress-rising {
+        position: relative;
+        z-index: 50;
+    }
+    .temperature p {
+        font-size: 1.5rem;
+    }
+    .temperature button {
+        width: 30px;
+        padding: 0 30px 0 10px;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .main-grid {
+        margin: auto 10px auto 10px;
+    }
+    .weather-panel {
+        grid-column: 1/3;
+        grid-row: 3/4;
+    }
+    .weather-panel + .trending {
+        grid-column: 1/3;
+        grid-row: 4/5;
+        font-size: 0.7rem;
+    }
+    .grid-item:first-of-type {
+        grid-column: 1/3;
+        grid-row: 7/8;
+    }
+    .grid-item {
+        grid-column-end: span 2;
+        width: 250px;
+        justify-self: center;
+    }
+    .hamburger-button {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+    }
+    .card {
+        grid-column: 1/3;
+        grid-row: 10/11;
+        justify-self: center;
+    }
+    .grid-item:last-of-type {
+        grid-column: 1/3;
+        grid-row: 9/10;
+        justify-self: center;
+    }
+}
